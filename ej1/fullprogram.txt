@@ -1,0 +1,58 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <cstdlib>
+using namespace std;
+double ScalarProduct (const vector <double>& a, const vector <double>& b){
+	if (a.size() != b.size()){
+		cerr << "Los vectores deben tener el mismo tamaño" << endl;
+		exit (1);
+	}
+	double product = 0;
+	for (size_t i = 0; i < a.size() ; i++){
+		product += a[i] * b[i];
+	}
+	return product;
+}
+void CheckParameters (int argc, char* argv[]){
+	if (argc != 3){
+		cerr << "Introduce exactamente dos argumentos";
+		exit (1);
+	}
+}
+vector <double> ReadVector (string line){
+	vector <double> vec;
+	istringstream flujo (line);
+	double number;
+	while (flujo >> number){
+		vec.push_back (number);
+	}
+	return vec;
+}
+	
+int main(int argc, char* argv[]){
+	CheckParameters (argc, argv);
+	string v1 = argv[1];
+	string v2 = argv[2];
+	vector <double> a = ReadVector (v1);
+	vector <double> b = ReadVector (v2);
+	double product = ScalarProduct(a, b);
+	cout << "El producto escalar de los dos vectores introducidos (" << v1 <<") (" << v2 <<") es: "<< product << endl;
+	return 0;
+}
+
+
+	
+
+
+
+
+
+
+
+
+	
+
+
+
